@@ -1,0 +1,66 @@
+﻿@model Catec.Models.CatequistaModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Catec - Gestão de Catequisandos</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="icon" type="image/png" href="https://www.tutorialrepublic.com/examples/images/avatar.png" ">
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="login-form">
+        <h2 class="text-center">CATEC - GESTÃO DE CAQUISANDOS</h2>
+        <form asp-controller="Home" asp-action="Login" method="post">
+            <div class="avatar">
+                <img src="https://www.tutorialrepublic.com/examples/images/avatar.png" alt="Avatar">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control input-lg" asp-for="Login" placeholder="Login">
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="password" class="form-control input-lg" asp-for="Senha" placeholder="Senha">
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="perfil">Perfil</label>
+                <select class="form-control input-lg" asp-for="Perfil">
+                    <option value="Coordenadora">Coordenadora</option>
+                    <option value="Catequista">Catequista</option>
+                </select>
+            </div>
+
+
+            @{
+                try
+                {
+                    var erro = TempData["ErrorLogin"].ToString();
+                    <h5 class="text-danger text-center">@erro</h5>
+                }
+                catch
+                {
+
+                }
+            }
+
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Entrar</button>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+</html>

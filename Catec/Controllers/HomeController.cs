@@ -3,31 +3,59 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Catec.Models;
+
 
 namespace Catec.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+
+        public IActionResult Inicio()
         {
+           
             return View();
         }
 
-        public IActionResult About()
+
+        public IActionResult Login(int? id)
         {
-            ViewData["Message"] = "Your application description page.";
+            if(id != null)
+            {
+                //Realizar logout
+                if(id == 0)
+                {
+                    HttpContext.Session.SetString("IdUsuarioLogado", string.Empty);
+                    HttpContext.Session.SetString("CatequistaLogado", string.Empty);
+                }
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(CatequistaModel catequista)
+        {
+            if (ModelState.IsValid)
+            {
+                bool loginOk = catequista.ValidarLogin();
+                if (loginOk)
+                {
+                    HttpContext.Session.SetString("IdUsuarioLogodo", catequista.IdCatequista);
+                    HttpContext.Session.SetString("CatequistaLogado", catequista.NomeCatequista);
+                    return RedirectToAction("Inicio", "Home");
+                }
+            }
+            else
+            {
+                TempData["ErrorLogin"] = "E-mail ou Senha são inválidos!";
+            }
 
             return View();
         }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
+        
 
         public IActionResult Privacy()
         {
