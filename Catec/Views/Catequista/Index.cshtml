@@ -1,7 +1,7 @@
-﻿@model Catec.Models.ComunidadeModel
+﻿@model Catec.Models.CatequistaModel
 
 @{
-    ViewData["Title"] = "Comunidade";
+    ViewData["Title"] = "Catequista";
 }
 
 <section class="content-header">
@@ -21,24 +21,32 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Comunidade</th>
-                        <th>Bairro</th>
+                        <th>Catequista</th>
+                        <th>Cpf</th>
+                        <th>Rua</th>
+                        <th>Numero</th>
+                        <th>Data_cadastro</th>
+                        <th>Status</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @{
-                        foreach (var item in (List<ComunidadeModel>)ViewBag.ListaComunidade)
+                        foreach (var item in (List<CatequistaModel>)ViewBag.ListaCatequista)
                         {
-                            <tr>
-                                <td>@item.Comunidade</td>
-                                <td>@item.Bairro</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning" onclick="Editar(@item.IdComunidade)">Editar</button>
-                                    <button type="button" class="btn btn-danger" onclick="Excluir(@item.IdComunidade)">Excluir</button>
-                                </td>
-                            </tr>
+                    <tr>
+                        <td>@item.NomeCatequista</td>
+                        <td>@item.Cpf</td>
+                        <td>@item.Rua</td>
+                        <td>@item.Numero</td>
+                        <td>@item.Data_cadastro</td>
+                        <td>@item.Ativo</td>
+                        <td>
+                            <button type="button" class="btn btn-warning" onclick="Editar(@item.IdCatequista)">Editar</button>
+                            <button type="button" class="btn btn-danger" onclick="Excluir(@item.IdCatequista)">Excluir</button>
+                        </td>
+                    </tr>
                         }
                     }
 

@@ -20,6 +20,10 @@
         <link rel="stylesheet" href="~/css/AdminLTE.min.css">
         <link rel="stylesheet" href="~/css/skins/skin-blue.min.css">
         <link rel="stylesheet" href="~/css/global.css" />
+        
+        <script src="~/lib/jquery/jquery-3.3.1.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/app.min.js"></script>
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -130,7 +134,7 @@
                         <ul class="treeview-menu">
                             <li><a href="../Comunidade/Index">Comunidade</a></li>
                             <li><a href="#">Catequisando</a></li>
-                            <li><a href="#">Catequista</a></li>
+                            <li><a href="../Catequista/Index">Catequista</a></li>
                         </ul>
                     </li>
                     <li><a href="#"><i class="fa fa-book"></i> <span>Abrir Turma</span></a></li>
@@ -242,9 +246,6 @@
         </aside>
 
         <environment include="Development">
-            <script src="~/lib/jquery/dist/jquery.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-            <script src="~/js/app.min.js"></script>
             <script src="~/js/site.js" asp-append-version="true"></script>
         </environment>
         <environment exclude="Development">

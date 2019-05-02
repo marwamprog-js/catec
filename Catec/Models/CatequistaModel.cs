@@ -28,30 +28,42 @@ namespace Catec.Models
         public string Perfil { get; set; }
         public string IdComunidade { get; set; }
 
-        public bool ValidarLogin()
+        //Metodo retorna todos os catequistas cadastrados
+        public List<CatequistaModel> ListarTodosCatequistas()
         {
-            string sql = $"SELECT idcatequista, catequista, login, senha, perfil FROM catequista WHERE login = @login AND senha = @senha AND perfil = @perfil";
-            MySqlCommand Command = new MySqlCommand();
-            Command.CommandText = sql;
-            Command.Parameters.AddWithValue("@login", Login);
-            Command.Parameters.AddWithValue("@senha", Senha);
-            Command.Parameters.AddWithValue("@perfil", Perfil);
-
+            List<CatequistaModel> listaCatequista = new List<CatequistaModel>();
+            CatequistaModel item;
             DAL objDAL = new DAL();
+            string sql = "SELECT idcatequista, catequista, cpf, rua, numero, data_cadastro, " +
+                "ativo, login, senha, perfil, idcomunidade FROM catequista order by catequista";
+            DataTable dt = objDAL.RetDataTable(sql);
 
-            DataTable dt = objDAL.RetDataTable(Command);
-            if(dt.Rows.Count == 1)
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                IdCatequista = dt.Rows[0]["idcatequista"].ToString();
-                NomeCatequista = dt.Rows[0]["catequista"].ToString();
-                Perfil = dt.Rows[0]["perfil"].ToString();
-                return true;
+                item = new CatequistaModel
+                {
+                    IdCatequista = dt.Rows[i]["idcatequista"].ToString(),
+                    NomeCatequista = dt.Rows[i]["catequista"].ToString(),
+                    Cpf = dt.Rows[i]["cpf"].ToString(),
+                    Rua = dt.Rows[i]["rua"].ToString(),
+                    Numero = dt.Rows[i]["numero"].ToString(),
+                    Data_cadastro = dt.Rows[i]["data_cadastro"].ToString(),
+                    Ativo = dt.Rows[i]["ativo"].ToString(),
+                    Login = dt.Rows[i]["login"].ToString(),
+                    Senha = dt.Rows[i]["senha"].ToString(),
+                    Perfil = dt.Rows[i]["perfil"].ToString(),
+                    IdComunidade = dt.Rows[i]["idcomunidade"].ToString()
+                };
+
+                listaCatequista.Add(item);
             }
-            else
-            {
-                return false;
-            }
+
+            return listaCatequista;           
+
         }
+
 
     }
 }
+
+

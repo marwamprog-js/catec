@@ -36,16 +36,16 @@ namespace Catec.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(CatequistaModel catequista)
+        public IActionResult Login(LoginModel usuario)
         {
             if (ModelState.IsValid)
             {
-                bool loginOk = catequista.ValidarLogin();
+                bool loginOk = usuario.ValidarLogin();
                 if (loginOk)
                 {
-                    HttpContext.Session.SetString("IdUsuarioLogodo", catequista.IdCatequista);
-                    HttpContext.Session.SetString("CatequistaLogado", catequista.NomeCatequista);
-                    HttpContext.Session.SetString("PerfilLogado", catequista.Perfil);
+                    HttpContext.Session.SetString("IdUsuarioLogodo", usuario.IdCatequista);
+                    HttpContext.Session.SetString("CatequistaLogado", usuario.Catequista);
+                    HttpContext.Session.SetString("PerfilLogado", usuario.Perfil);
                     return RedirectToAction("Inicio", "Home");
                 }
             }
