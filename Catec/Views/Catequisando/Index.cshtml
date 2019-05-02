@@ -1,0 +1,75 @@
+﻿@model Catec.Models.CatequisandoModel
+
+@{
+    ViewData["Title"] = "Catequisando";
+}
+
+<section class="content-header">
+    <h2>@ViewData["Title"]</h2>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div style="margin-bottom: 10px;">
+        <button class="btn btn-primary" type="button" onclick="Cadastrar()">Cadastrar</button>
+    </div>
+    <div class="box">
+
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Catequisando</th>
+                        <th>Mae</th>
+                        <th>Pai</th>
+                        <th>Rua</th>
+                        <th>Numero</th>
+                        <th>Data_cadastro</th>
+                        <th>Status</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        foreach (var item in (List<CatequisandoModel>)ViewBag.ListaCatequisando)
+                        {
+                            <tr>
+                                <td>@item.NomeCatequisando</td>
+                                <td>@item.Mae</td>
+                                <td>@item.Pai</td>
+                                <td>@item.Rua</td>
+                                <td>@item.Numero</td>
+                                <td>@item.Data_cadastro</td>
+                                <td>@item.Ativo</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning" onclick="Editar(@item.IdCatequisando)">Editar</button>
+                                    <button type="button" class="btn btn-danger" onclick="Excluir(@item.IdCatequisando)">Excluir</button>
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</section>
+<!-- /.content -->
+
+<script>
+    function Cadastrar() {
+        window.location.href = "../Comunidade/Cadastro";
+    }
+
+    function Editar(id) {
+        window.location.href = "../Comunidade/Cadastro" + id;
+    }
+
+    function Excluir(id) {
+        window.location.href = "../Comunidade/Excluir" + id;
+    }
+</script>
