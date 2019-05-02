@@ -29,6 +29,7 @@ namespace Catec.Controllers
                 {
                     HttpContext.Session.SetString("IdUsuarioLogado", string.Empty);
                     HttpContext.Session.SetString("CatequistaLogado", string.Empty);
+                    HttpContext.Session.SetString("PerfilLogado", string.Empty);
                 }
             }
             return View();
@@ -44,6 +45,7 @@ namespace Catec.Controllers
                 {
                     HttpContext.Session.SetString("IdUsuarioLogodo", catequista.IdCatequista);
                     HttpContext.Session.SetString("CatequistaLogado", catequista.NomeCatequista);
+                    HttpContext.Session.SetString("PerfilLogado", catequista.Perfil);
                     return RedirectToAction("Inicio", "Home");
                 }
             }

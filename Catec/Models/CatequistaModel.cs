@@ -44,6 +44,7 @@ namespace Catec.Models
             {
                 IdCatequista = dt.Rows[0]["idcatequista"].ToString();
                 NomeCatequista = dt.Rows[0]["catequista"].ToString();
+                Perfil = dt.Rows[0]["perfil"].ToString();
                 return true;
             }
             else

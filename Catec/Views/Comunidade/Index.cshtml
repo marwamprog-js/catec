@@ -1,0 +1,65 @@
+﻿@model Catec.Models.ComunidadeModel
+
+
+<section class="content-header">
+    <h2>Comunidade</h2>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div style="margin-bottom: 10px;">
+        <button class="btn btn-primary" type="button" onclick="Cadastrar()">Cadastrar</button>
+    </div>
+    <div class="box">    
+        
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Comunidade</th>
+                        <th>Bairro</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        foreach (var item in (List<ComunidadeModel>)ViewBag.ListaComunidade)
+                        {
+                            <tr>
+                                <td>@item.Comunidade</td>
+                                <td>@item.Bairro</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning" onclick="Editar(@item.IdComunidade)">Editar</button>
+                                    <button type="button" class="btn btn-danger" onclick="Excluir(@item.IdComunidade)">Excluir</button>
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</section>
+<!-- /.content -->
+
+<script>
+    function Cadastrar()
+    {
+        window.location.href = "../Comunidade/Cadastro";
+    }
+
+    function Editar(id)
+    {
+        window.location.href = "../Comunidade/Cadastro" + id;
+    }
+
+    function Excluir(id)
+    {
+        window.location.href = "../Comunidade/Excluir" + id;
+    }
+</style>
